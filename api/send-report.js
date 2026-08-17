@@ -63,9 +63,17 @@ module.exports = async (req, res) => {
       return res.status(500).json({ error: 'No recipient is configured on the server.' });
     }
 
+    // reports@ is a send-only address with no mailbox behind it, so a reply
+    // would bounce. REPLY_TO points those replies at a real person.
+    const replyTo = String(process.env.REPLY_TO || '')
+      .split(',')
+      .map(a => a.trim())
+      .filter(Boolean);
+
     const payload = {
       from: process.env.MAIL_FROM,
       to: recipients,
+      ...(replyTo.length ? { reply_to: replyTo } : {}),
       subject: `${heading} — ${student} · ${subject} ${level}`,
       text: rows.map(([k, v]) => `${k}: ${v || '—'}`).join('\n'),
       html: `
