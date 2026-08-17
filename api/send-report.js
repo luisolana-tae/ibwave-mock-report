@@ -51,9 +51,21 @@ module.exports = async (req, res) => {
       ? [['Alumno', student], ['Profesor', teacher], ['Asignatura', `${subject} ${level}`], ['Convocatoria', session]]
       : [['Student', student], ['Teacher', teacher], ['Subject', `${subject} ${level}`], ['Session', session]];
 
+    // MAIL_TO takes one address or several separated by commas, so recipients
+    // can be changed without touching the code.
+    const recipients = String(process.env.MAIL_TO || '')
+      .split(',')
+      .map(a => a.trim())
+      .filter(Boolean);
+
+    if (!recipients.length) {
+      console.error('MAIL_TO is empty.');
+      return res.status(500).json({ error: 'No recipient is configured on the server.' });
+    }
+
     const payload = {
       from: process.env.MAIL_FROM,
-      to: [process.env.MAIL_TO],
+      to: recipients,
       subject: `${heading} — ${student} · ${subject} ${level}`,
       text: rows.map(([k, v]) => `${k}: ${v || '—'}`).join('\n'),
       html: `
