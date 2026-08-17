@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IB Wave · Mock Report Generator</title>
+<meta name="description" content="Mock examination report generator for IB Wave — Think Ahead Education.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="wordmark">
+      <img class="logo" src="assets/img/logo-ibwave.png" alt="IB Wave by Think Ahead Education" width="900" height="365" fetchpriority="high">
+      <h1 class="wordmark-name" data-i18n="brand">IB WAVE</h1>
+      <span class="wordmark-sub" data-i18n="brandSub">Mock Report Generator</span>
+    </div>
+    <button type="button" class="lang-btn" id="langBtn" data-i18n="langToggle" data-i18n-title="langToggleTitle">ES</button>
+  </div>
+</header>
+
+<div class="brandband">
+  <svg class="swell" id="swell" viewBox="0 0 1200 40" preserveAspectRatio="none" aria-hidden="true">
+    <path class="swell-back"  d="M0,22 C150,2 300,42 450,22 C600,2 750,42 900,22 C1050,2 1150,32 1200,24 L1200,40 L0,40 Z"></path>
+    <path class="swell-mid"   d="M0,28 C200,10 340,44 520,26 C700,8 860,42 1030,26 C1120,18 1170,26 1200,30 L1200,40 L0,40 Z"></path>
+    <path class="swell-front" d="M0,34 C180,22 320,44 500,32 C680,20 840,42 1010,32 C1110,26 1170,32 1200,34 L1200,40 L0,40 Z"></path>
+  </svg>
+</div>
+
+<nav class="stepper" id="stepper" aria-label="Progress"></nav>
+
+<main class="sheet">
+  <div class="card">
+
+    <!-- ============================================ STEP 1 · DETAILS ==== -->
+    <section class="panel" id="panel-1" aria-labelledby="t1">
+      <p class="panel-eyebrow" data-i18n="stepOf" data-i18n-vars='{"n":1}'></p>
+      <h2 class="panel-title" id="t1" data-i18n="s1Title"></h2>
+      <p class="panel-lead" data-i18n="s1Lead"></p>
+
+      <div class="grid">
+        <div class="field">
+          <label for="teacher" data-i18n="teacher"></label>
+          <input type="text" id="teacher" autocomplete="name" data-i18n-ph="teacherPh" required>
+          <span class="error-msg" data-i18n="required"></span>
+        </div>
+        <div class="field">
+          <label for="student" data-i18n="student"></label>
+          <input type="text" id="student" data-i18n-ph="studentPh" required>
+          <span class="error-msg" data-i18n="required"></span>
+        </div>
+
+        <div class="field">
+          <label for="subject" data-i18n="subject"></label>
+          <select id="subject" required></select>
+          <span class="error-msg" data-i18n="required"></span>
+        </div>
+        <div class="field">
+          <label data-i18n="level"></label>
+          <div class="segmented">
+            <input type="radio" name="level" id="levelHL" value="HL" checked>
+            <label for="levelHL">HL</label>
+            <input type="radio" name="level" id="levelSL" value="SL">
+            <label for="levelSL">SL</label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="session" data-i18n="session"></label>
+          <select id="session" required></select>
+          <span class="help" data-i18n="sessionHelp"></span>
+          <span class="error-msg" data-i18n="required"></span>
+        </div>
+        <div class="field">
+          <label for="timezone" data-i18n="timezone"></label>
+          <select id="timezone"></select>
+        </div>
+
+        <div class="field">
+          <label for="mockDate" data-i18n="mockDate"></label>
+          <input type="date" id="mockDate">
+        </div>
+      </div>
+
+      <div class="notice notice-flat" id="syllabusNotice" hidden><span></span></div>
+
+      <div class="actions">
+        <span class="spacer"></span>
+        <button type="button" class="btn btn-primary" data-go="2" data-i18n="next"></button>
+      </div>
+    </section>
+
+    <!-- ============================================== STEP 2 · MARKS ==== -->
+    <section class="panel" id="panel-2" hidden aria-labelledby="t2">
+      <p class="panel-eyebrow" data-i18n="stepOf" data-i18n-vars='{"n":2}'></p>
+      <h2 class="panel-title" id="t2" data-i18n="s2Title"></h2>
+      <p class="panel-lead" data-i18n="s2Lead"></p>
+
+      <div id="paperRows"></div>
+
+      <div class="combined-strip">
+        <div>
+          <div class="label" data-i18n="combined"></div>
+          <div class="help" data-i18n="combinedHelp"></div>
+        </div>
+        <div class="value" id="combinedValue">—</div>
+      </div>
+
+      <div class="actions">
+        <button type="button" class="btn btn-ghost" data-go="1" data-i18n="back"></button>
+        <span class="spacer"></span>
+        <button type="button" class="btn btn-primary" data-go="3" data-i18n="next"></button>
+      </div>
+    </section>
+
+    <!-- ========================================= STEP 3 · PREDICTION ==== -->
+    <section class="panel" id="panel-3" hidden aria-labelledby="t3">
+      <p class="panel-eyebrow" data-i18n="stepOf" data-i18n-vars='{"n":3}'></p>
+      <h2 class="panel-title" id="t3" data-i18n="s3Title"></h2>
+      <p class="panel-lead" data-i18n="s3Lead"></p>
+
+      <h3 class="subhead" data-i18n="predictSetup"></h3>
+      <ul class="setup-list" id="setupList"></ul>
+
+      <h3 class="subhead" data-i18n="predictEnter"></h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th data-i18n="component"></th>
+            <th data-i18n="markToEnter"></th>
+            <th data-i18n="source"></th>
+          </tr>
+        </thead>
+        <tbody id="predictRows"></tbody>
+      </table>
+      <div class="notice notice-flat"><span data-i18n="estimateExplainer"></span></div>
+
+      <label class="checkline" id="realIALine" hidden>
+        <input type="checkbox" id="useRealIA">
+        <span data-i18n="useRealIA"></span>
+      </label>
+      <div class="field" id="realIAField" hidden>
+        <label for="realIAMark" data-i18n="realIAMark"></label>
+        <input type="number" id="realIAMark" min="0" step="1">
+      </div>
+
+      <div class="actions" style="border-top:0;padding-top:14px;margin-top:14px">
+        <a class="btn btn-accent" id="predictLink" href="https://ibpredict.org" target="_blank" rel="noopener">
+          <span data-i18n="openPredict"></span>
+        </a>
+      </div>
+
+      <h3 class="subhead" data-i18n="predictResults"></h3>
+      <div class="grid">
+        <div class="field">
+          <label for="predictGrade" data-i18n="predictedGrade"></label>
+          <select id="predictGrade" required></select>
+          <span class="error-msg" data-i18n="required"></span>
+        </div>
+        <div class="field">
+          <label for="predictPct" data-i18n="predictTotalPct"></label>
+          <input type="number" id="predictPct" min="0" max="100" step="1">
+        </div>
+        <div class="field">
+          <label for="boundary" data-i18n="gradeBoundary"></label>
+          <input type="text" id="boundary" data-i18n-ph="gradeBoundaryPh" required>
+          <span class="help" data-i18n="gradeBoundaryHelp"></span>
+          <span class="error-msg" data-i18n="required"></span>
+        </div>
+        <div class="field">
+          <label for="teacherGrade" data-i18n="teacherGrade"></label>
+          <select id="teacherGrade" required></select>
+          <span class="help" data-i18n="teacherGradeHelp"></span>
+          <span class="error-msg" data-i18n="required"></span>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button type="button" class="btn btn-ghost" data-go="2" data-i18n="back"></button>
+        <span class="spacer"></span>
+        <button type="button" class="btn btn-primary" data-go="4" data-i18n="next"></button>
+      </div>
+    </section>
+
+    <!-- ============================================ STEP 4 · REPORT ==== -->
+    <section class="panel" id="panel-4" hidden aria-labelledby="t4">
+      <p class="panel-eyebrow" data-i18n="stepOf" data-i18n-vars='{"n":4}'></p>
+      <h2 class="panel-title" id="t4" data-i18n="s4Title"></h2>
+      <p class="panel-lead" id="s4Lead"></p>
+
+      <div id="commentBlocks"></div>
+
+      <div class="actions">
+        <button type="button" class="btn btn-ghost" data-go="3" data-i18n="back"></button>
+        <span class="spacer"></span>
+        <button type="button" class="btn btn-primary" id="generateBtn" data-i18n="generate"></button>
+      </div>
+    </section>
+
+    <!-- ============================================== STEP 5 · DONE ==== -->
+    <section class="panel" id="panel-5" hidden aria-labelledby="t5">
+      <div class="done-mark" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+      </div>
+      <h2 class="panel-title" id="t5" data-i18n="pdfReady"></h2>
+      <p class="panel-lead" id="doneLead"></p>
+
+      <div class="recap" id="recap"></div>
+
+      <div class="status" id="sendStatus" hidden></div>
+
+      <div class="actions" style="border-top:0;padding-top:0">
+        <button type="button" class="btn btn-primary" id="downloadBtn" data-i18n="downloadPdf"></button>
+        <button type="button" class="btn btn-accent" id="emailBtn" data-i18n="sendEmail"></button>
+        <span class="spacer"></span>
+        <button type="button" class="btn btn-quiet" id="resetBtn" data-i18n="startNew"></button>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="foot">
+  <span data-i18n="generatedBy"></span>
+  <span id="footRecipient"></span>
+</footer>
+
+<!-- jsPDF 4.2.1, vendored so the app works on locked-down school networks. -->
+<script src="assets/vendor/jspdf.umd.min.js"></script>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/state.js"></script>
+<script src="assets/js/i18n.js"></script>
+<script src="assets/js/report-pdf.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

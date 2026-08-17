@@ -1,0 +1,215 @@
+/* =============================================================================
+   i18n.js — every string in the interface and the PDF lives here.
+   ========================================================================== */
+
+const STRINGS = {
+  en: {
+    /* Shell */
+    brand: 'IB WAVE',
+    brandSub: 'Mock Report Generator',
+    langToggle: 'ES',
+    langToggleTitle: 'Cambiar a español',
+    stepOf: 'Step {n} of 4',
+
+    steps: ['Details', 'Marks', 'Prediction', 'Report'],
+
+    /* Step 1 */
+    s1Title: 'Who is this report for?',
+    s1Lead: 'These details head the report and set the papers used in the mock.',
+    teacher: 'Teacher',
+    teacherPh: 'Full name',
+    student: 'Student',
+    studentPh: 'Full name',
+    subject: 'Subject',
+    subjectPh: 'Select a subject',
+    level: 'Level',
+    session: 'Past paper session',
+    sessionPh: 'Select a session',
+    sessionHelp: 'The session the mock papers come from. Grade boundaries are specific to it.',
+    timezone: 'Timezone',
+    mockDate: 'Mock date',
+
+    /* Step 2 */
+    s2Title: 'Marks obtained',
+    s2Lead: 'Enter the raw mark for each paper. Totals are editable if the paper front page says otherwise.',
+    markObtained: 'Mark',
+    outOf: 'out of',
+    weight: 'Weight',
+    paperPct: 'Percentage',
+    combined: 'Combined percentage',
+    combinedHelp: 'Weighted across the two papers sat, using the official component weightings.',
+
+    /* Step 3 */
+    s3Title: 'Run it through IB Predict',
+    s3Lead: 'Open ibpredict.org, pick the subject, level and session below, and enter these marks.',
+    openPredict: 'Open ibpredict.org',
+    predictSetup: 'Setup in IB Predict',
+    predictEnter: 'Marks to enter',
+    component: 'Component',
+    markToEnter: 'Mark to enter',
+    source: 'Source',
+    sourceSat: 'Sat in the mock',
+    sourceEstimated: 'Estimated',
+    estimateExplainer: 'Components not sat in the mock are set to the student\'s own combined percentage, so they neither inflate nor depress the predicted grade.',
+    useRealIA: 'I have the student\'s real IA mark',
+    realIAMark: 'Real IA mark',
+    predictResults: 'Results from IB Predict',
+    predictedGrade: 'Grade given by IB Predict',
+    predictTotalPct: 'Total percentage',
+    gradeBoundary: 'Grade boundary for that grade',
+    gradeBoundaryPh: 'e.g. 63–74%',
+    gradeBoundaryHelp: 'Copy the range IB Predict shows for the awarded grade.',
+    teacherGrade: 'Your own predicted grade',
+    teacherGradeHelp: 'What you expect in the real session, taking everything into account.',
+    gradePh: 'Select',
+
+    /* Step 4 */
+    s4Title: 'Teacher comments',
+    s4Lead: 'Write what the student and the family need to read. Between {min} and {max} characters per section.',
+    charsLeft: '{n} characters to go',
+    charsOk: '{n} / {max} characters',
+    charsOver: '{n} over the limit',
+    skip: 'Nothing to report',
+    skipped: 'Skipped',
+    skippedPdf: 'No comments recorded for this section.',
+
+    /* Actions */
+    back: 'Back',
+    next: 'Continue',
+    generate: 'Generate report',
+    downloadPdf: 'Download PDF',
+    sendEmail: 'Email the report',
+    startNew: 'Start a new report',
+    sending: 'Sending…',
+    sentOk: 'Report sent to {email}.',
+    sendFail: 'The report could not be sent. Download the PDF and email it to {email}.',
+    mailFallback: 'Open mail app',
+    mailFallbackHelp: 'Sending is not configured. Download the PDF and attach it manually.',
+
+    /* Validation */
+    required: 'This field is required.',
+    invalidMark: 'Enter a mark between 0 and {max}.',
+    fixErrors: 'Fill in the highlighted fields to continue.',
+    commentShort: 'At least {min} characters, or mark it as nothing to report.',
+
+    /* Summary / PDF */
+    reportTitle: 'MOCK EXAMINATION REPORT',
+    summary: 'Summary',
+    papersSat: 'Papers sat',
+    prediction: 'Prediction',
+    comments: 'Comments',
+    ibPredictGrade: 'IB Predict grade',
+    teacherPrediction: 'Teacher prediction',
+    grade: 'Grade',
+    issuedOn: 'Issued',
+    confidential: 'Confidential — for the student and their family. Predicted grades are an academic estimate based on mock performance, not an IB result.',
+    generatedBy: 'IB Wave · Think Ahead Education',
+    org: 'Think Ahead Education',
+    filename: 'IBWave_Mock_Report',
+    pdfReady: 'Report ready.'
+  },
+
+  es: {
+    brand: 'IB WAVE',
+    brandSub: 'Generador de Reportes de Mock',
+    langToggle: 'EN',
+    langToggleTitle: 'Switch to English',
+    stepOf: 'Paso {n} de 4',
+
+    steps: ['Datos', 'Notas', 'Predicción', 'Reporte'],
+
+    s1Title: '¿De quién es este reporte?',
+    s1Lead: 'Estos datos encabezan el reporte y determinan los papers del mock.',
+    teacher: 'Profesor',
+    teacherPh: 'Nombre y apellidos',
+    student: 'Alumno',
+    studentPh: 'Nombre y apellidos',
+    subject: 'Asignatura',
+    subjectPh: 'Selecciona una asignatura',
+    level: 'Nivel',
+    session: 'Convocatoria de los papers',
+    sessionPh: 'Selecciona una convocatoria',
+    sessionHelp: 'La convocatoria de la que salen los papers del mock. Los grade boundaries son específicos de ella.',
+    timezone: 'Timezone',
+    mockDate: 'Fecha del mock',
+
+    s2Title: 'Notas obtenidas',
+    s2Lead: 'Introduce la puntuación bruta de cada paper. Los totales son editables si la portada del paper indica otro.',
+    markObtained: 'Nota',
+    outOf: 'sobre',
+    weight: 'Peso',
+    paperPct: 'Porcentaje',
+    combined: 'Porcentaje combinado',
+    combinedHelp: 'Ponderado entre los dos papers realizados, con los pesos oficiales de cada componente.',
+
+    s3Title: 'Pásalo por IB Predict',
+    s3Lead: 'Abre ibpredict.org, elige la asignatura, nivel y convocatoria de abajo, e introduce estas notas.',
+    openPredict: 'Abrir ibpredict.org',
+    predictSetup: 'Configuración en IB Predict',
+    predictEnter: 'Notas a introducir',
+    component: 'Componente',
+    markToEnter: 'Nota a introducir',
+    source: 'Origen',
+    sourceSat: 'Realizado en el mock',
+    sourceEstimated: 'Estimado',
+    estimateExplainer: 'Los componentes que no se realizan en el mock se fijan al porcentaje combinado del propio alumno, de modo que no inflan ni hunden la nota predictiva.',
+    useRealIA: 'Tengo la nota real de la EI del alumno',
+    realIAMark: 'Nota real de la EI',
+    predictResults: 'Resultados de IB Predict',
+    predictedGrade: 'Nota que da IB Predict',
+    predictTotalPct: 'Porcentaje total',
+    gradeBoundary: 'Grade boundary de esa nota',
+    gradeBoundaryPh: 'p. ej. 63–74%',
+    gradeBoundaryHelp: 'Copia el rango que IB Predict muestra para la nota obtenida.',
+    teacherGrade: 'Tu propia nota predictiva',
+    teacherGradeHelp: 'Lo que esperas en la convocatoria real, teniéndolo todo en cuenta.',
+    gradePh: 'Elige',
+
+    s4Title: 'Comentarios del profesor',
+    s4Lead: 'Escribe lo que el alumno y la familia necesitan leer. Entre {min} y {max} caracteres por apartado.',
+    charsLeft: 'faltan {n} caracteres',
+    charsOk: '{n} / {max} caracteres',
+    charsOver: '{n} caracteres de más',
+    skip: 'Nada que comentar',
+    skipped: 'Omitido',
+    skippedPdf: 'Sin comentarios en este apartado.',
+
+    back: 'Atrás',
+    next: 'Continuar',
+    generate: 'Generar reporte',
+    downloadPdf: 'Descargar PDF',
+    sendEmail: 'Enviar el reporte por correo',
+    startNew: 'Empezar un reporte nuevo',
+    sending: 'Enviando…',
+    sentOk: 'Reporte enviado a {email}.',
+    sendFail: 'No se ha podido enviar el reporte. Descarga el PDF y envíalo a {email}.',
+    mailFallback: 'Abrir el correo',
+    mailFallbackHelp: 'El envío automático no está configurado. Descarga el PDF y adjúntalo a mano.',
+
+    required: 'Este campo es obligatorio.',
+    invalidMark: 'Introduce una nota entre 0 y {max}.',
+    fixErrors: 'Completa los campos marcados para continuar.',
+    commentShort: 'Mínimo {min} caracteres, o márcalo como que no hay nada que comentar.',
+
+    reportTitle: 'REPORTE DE EXAMEN MOCK',
+    summary: 'Resumen',
+    papersSat: 'Papers realizados',
+    prediction: 'Predicción',
+    comments: 'Comentarios',
+    ibPredictGrade: 'Nota IB Predict',
+    teacherPrediction: 'Predicción del profesor',
+    grade: 'Nota',
+    issuedOn: 'Emitido',
+    confidential: 'Confidencial — para el alumno y su familia. Las notas predictivas son una estimación académica basada en el rendimiento en el mock, no un resultado del IB.',
+    generatedBy: 'IB Wave · Think Ahead Education',
+    org: 'Think Ahead Education',
+    filename: 'IBWave_Reporte_Mock',
+    pdfReady: 'Reporte listo.'
+  }
+};
+
+const t = (key, vars = {}) => {
+  const raw = (STRINGS[STATE.lang] && STRINGS[STATE.lang][key]) ?? key;
+  if (typeof raw !== 'string') return raw;
+  return raw.replace(/\{(\w+)\}/g, (m, k) => (vars[k] !== undefined ? vars[k] : m));
+};

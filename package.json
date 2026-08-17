@@ -1,0 +1,12 @@
+{
+  "name": "ibwave-mock-report",
+  "version": "1.0.0",
+  "description": "Mock examination report generator for IB Wave — Think Ahead Education.",
+  "private": true,
+  "scripts": {
+    "dev": "npx serve ."
+  },
+  "dependencies": {
+    "nodemailer": "^6.9.14"
+  }
+}
